@@ -1,0 +1,35 @@
+---
+  - name: install required gpg package
+    become: yes
+    apt:
+      name: gpg
+
+  - name: add an apt key for mongodb
+    become: yes
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: 0C49F3730359A14518585931BC711F9BA15703C6
+
+  - name: add mongodb repository
+    become: yes
+    apt_repository:
+      repo: "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse"
+      filename: "mongodb"
+
+  - name: add an apt key for unifi
+    become: yes
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: 06E85760C0A52C50
+
+  - name: add unifi repository
+    become: yes
+    apt_repository:
+      repo: "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti"
+      filename: "ubiquiti"
+
+  - name: install unifi
+    become: yes
+    apt:
+      name: "unifi"
+      update_cache: yes
