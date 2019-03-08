@@ -33,3 +33,4 @@
     apt:
       name: "unifi"
       update_cache: yes
+      state: latest
